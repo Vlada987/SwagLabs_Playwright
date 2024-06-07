@@ -23,6 +23,7 @@ test.only('test02', async ({ page }) => {
     await loginPage.gotoLoginPage();
     await expect(page).toHaveTitle("Swag Labs");
     await expect(page.locator("id=login-button")).toBeVisible();
+    
     // Login with valid cred. and confirm presence on Home Page
 
     await loginPage.login("standard_user", "secret_sauce");
@@ -33,6 +34,7 @@ test.only('test02', async ({ page }) => {
 
     const filterXp = "//select[@class='product_sort_container']";
     await page.locator(filterXp).selectOption({ index: 1 });
+    
     //Selecting a product
 
     await page.getByText("Sauce Labs Backpack").click();
@@ -40,6 +42,7 @@ test.only('test02', async ({ page }) => {
     const priceTx = await page.locator(".inventory_details_price").textContent();
     await expect(priceTx).toContain("29.99");
     await expect(page).toHaveURL(bcpkUrl);
+    
     //Log out and verify presence on Login page
 
     await page.locator("id=react-burger-menu-btn").click();
